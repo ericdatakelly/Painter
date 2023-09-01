@@ -21,7 +21,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 import timm
 
-assert timm.__version__ == "0.3.2"  # version check
+# assert timm.__version__ == "0.3.2"  # version check
 
 import util.lr_decay as lrd
 import util.misc as misc
