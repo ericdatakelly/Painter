@@ -2,20 +2,14 @@
 
 DATA_PATH=toy_datasets
 name=painter_vit_large
-WORLD_SIZE=1
-RANK=1
-LOCAL_RANK=1
 CUDA_VISIBLE_DEVICES=1
-MASTER_ADDR=127.0.0.1
-
 echo "Start training"
 
-python -m torch.distributed.run --nproc_per_node=1 \
-	--nnodes=${WORLD_SIZE} --node_rank=$RANK \
-	--master_addr=$MASTER_ADDR --master_port=8787 \
-	main_train.py  \
-    --batch_size 2 \
-    --accum_iter 16  \
+# python -m torch.distributed.launch --nproc_per_node=1 \
+python  main_train.py \
+    --local_rank 1 \
+    --batch_size 1 \
+    --accum_iter 2  \
     --model painter_vit_large_patch16_input896x448_win_dec64_8glb_sl1 \
     --num_mask_patches 784 \
     --max_mask_patches_per_block 392 \
